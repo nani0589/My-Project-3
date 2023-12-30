@@ -1,13 +1,11 @@
 node {
-    stage('Download code from git') 
-	     {
-           git 'https://github.com/venkat9822891/maven-project1.git'
-         }
-    stage('Convert artifacts') 
-	     {
-           sh 'mvn package'
-         }
-	stage('Deploy code into container') {
-           deploy adapters: [tomcat9(credentialsId: '5c48791a-5d08-48a7-a598-8583f6e3ee21', path: '', url: 'http://172.31.32.217:9090/')], contextPath: 'devapps', war: '**/*.war'
-         }
+    stage('Download') {
+    git branch: 'dev', url: 'https://github.com/nani0589/My-Project-3.git'
+                      }
+    stage('Convert into Artifacts') {
+    sh 'mvn package'
+                                    }
+    stage('Doploy into Container') {
+    deploy adapters: [tomcat9(credentialsId: '2d7c7414-c543-44a9-bf5f-51d421058fee', path: '', url: 'http://35.154.173.181:8080')], contextPath: '/devapp', war: '**/*.war'
+                                   }
 }
