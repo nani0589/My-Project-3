@@ -1,4 +1,4 @@
-node {
+node('slv1') {
     stage('Download') {
     git branch: 'dev', url: 'https://github.com/nani0589/My-Project-3.git'
                       }
